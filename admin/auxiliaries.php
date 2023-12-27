@@ -26,15 +26,14 @@ function getBlogs()
     $blog_id = $blog['blog_id'];
     $blog_date = $blog['blog_date'];
     echo  '
-            <div class="blog-post"  data-aos="fade-up" data-aos-delay="100">
-            <img src="./assets/uploads/' . $blog_image . '" alt="' . $blog_title . '" class="blog-post__image">
-            <div class="blog-post__content">
-              <p class="blog-post__meta">' . $blog_date . '</p>
-              <h4 class="blog-post__title">' . $blog_title . '</h4>
-              <p>' . $blog_content_short . '</p>
-              <a href="single-blog.php?id=' . $blog_id . '" class="blog-post__read-more">Read More</a>
+          <div class="card">
+            <img src="./assets/uploads/' . $blog_image . '" alt="' . $blog_title . '" style="width:100%">
+            <div class="container">
+                <h4><b>' . $blog_date . '</b></h4>
+                <p>' . $blog_content_short . '</p>
+                <a href="single-blog.php?id=' . $blog_id . '">Read more</a>
             </div>
-          </div>
+        </div>
             ';
   }
 }

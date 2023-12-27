@@ -1,3 +1,8 @@
+<?php 
+require_once('./admin/auxiliaries.php');
+include('./admin/database/config.php')
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
