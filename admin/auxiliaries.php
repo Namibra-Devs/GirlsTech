@@ -71,45 +71,21 @@ function getUpcomingEvents()
       $photo               = $event['photo'];
       $event_id            = $event['event_id'];
       echo '
-              <div class="flex-events">
-          <div class="flex-event"  data-aos="fade-up" data-aos-delay="100">
-            <div class="date">
-              <p class="event-text">' . $event_date . '</p>
-            </div>
-            <div class="event-details">
-              <h4 class="text-xl">' . $event_title . '</h4>
-              <p>' . $event_content_short . '</p>
-              <div>
-  
-                <div class="date-flex">
-                  <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z">
-                    </path>
-                  </svg>
-                  <span>10:00 AM</span>
-                </div>
-                <div class="date-flex">
-                  <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
-                    </path>
-                  </svg>
-                  <span>' . $event_venue . '</span>
-                </div>
-                <div class="button-div">
-                  <a href="single_event.php?id=' . $event_id . '" class="get-ticket">VIEW MORE</a>
-                </div>
-              </div>
-            </div>
+      <div class="service-box">
+      <div class="service-text" style="background-color: transparent;">
+          <h2>Title: '.$event_title.'</h2>
+          <p><b>Date:</b>'.$event_date.'</p>
+          <p><b>Location:</b>'.$event_venue.'</p>
+          <p><b>About Events:</b></p>
+          <p>'.$event_content_short.'</p>
+          <div class="mentor-btn" style="margin-top: 1.2rem;">
+              <a href="'.$event_link.'" style="  padding: .8rem 1.0rem; background-color: #102BDC; color: aliceblue;">Become a mentor</a>
           </div>
-          <div class="img-div">
-            <img class="event-img" src="./assets/uploads/' . $photo . '" alt="">
-          </div>
-        </div>
+      </div>
+      <div class="service-img perk-box">
+          <img src="./assets/uploads/'.$photo.'" alt="'.$photo.'">
+      </div>
+  </div>
               ';
   }
   }
@@ -132,45 +108,21 @@ function getPastEvents()
     $photo               = $event['photo'];
     $event_id            = $event['event_id'];
     echo '
-          <div class="flex-events">
-      <div class="flex-event"  data-aos="fade-up" data-aos-delay="100">
-        <div class="date">
-          <p class="event-text">' . $event_date . '</p>
+    <div class="service-box">
+    <div class="service-text" style="background-color: transparent;">
+        <h2>Title: '.$event_title.'</h2>
+        <p><b>Date:</b>'.$event_date.'</p>
+        <p><b>Location:</b>'.$event_venue.'</p>
+        <p><b>About Events:</b></p>
+        <p>'.$event_content_short.'</p>
+        <div class="mentor-btn" style="margin-top: 1.2rem;">
+            <a href="'.$event_link.'" style="  padding: .8rem 1.0rem; background-color: #102BDC; color: aliceblue;">Become a mentor</a>
         </div>
-        <div class="event-details">
-          <h4 class="text-xl">' . $event_title . '</h4>
-          <p>' . $event_content_short . '</p>
-          <div>
-
-            <div class="date-flex">
-              <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z">
-                </path>
-              </svg>
-              <span>10:00 AM</span>
-            </div>
-            <div class="date-flex">
-              <svg class="inline-block" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
-                </path>
-              </svg>
-              <span>' . $event_venue . '</span>
-            </div>
-            <div class="button-div">
-              <a href="single_event.php?id=' . $event_id . '" class="get-ticket">VIEW MORE</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="img-div">
-        <img class="event-img" src="./assets/uploads/' . $photo . '" alt="">
-      </div>
     </div>
+    <div class="service-img perk-box">
+        <img src="./assets/uploads/'.$photo.'" alt="'.$photo.'">
+    </div>
+</div>
           ';
   }
 }
