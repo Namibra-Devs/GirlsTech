@@ -1,18 +1,19 @@
+<?php
+        $footerInfo = getWebsiteDetails();
+        ?>
 <section class="footer">
     <div class="teletech">
         <div>   
             <div class="footer-logo">
-                <a><h1>Girly Tech</h1></a>
+                <a><h1><?php echo $footerInfo['website_name'] ?></h1></a>
             </div>
             <div class="teletech-text">
-                <p>Lorem ipsum diolor emet atet  lorem ipsum dilore amet 
-                    lorem iosum dilor amet lorem ipsum diilor 
-                    amet ncdnd dnjsdkkdls jdslkdsp;mkldkmmckmm lksdls slddslkksd l </p>
+                <p><?php echo $footerInfo['footer_about'] ?></p>
             </div>
         </div>
         <div>
-            <p>+2338096542356</p>
-            <p>info.girlytech@gmail.com</p>
+            <p><?php echo $footerInfo['contact_phone'] ?></p>
+            <a id="mailto" href="mailto:info.girlytech@gmail.com"><?php echo $footerInfo['contact_email'] ?></a>
         </div>
     </div>
     <div class="quick-links">

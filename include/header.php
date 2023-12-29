@@ -24,7 +24,8 @@ include('./admin/database/config.php')
     <div class="navbar-center">
         <div class="logo">
             <a href="index.php">
-                <img width="50px" src="img/logo-tech.png" alt="">
+            <img width="50px" src="./assets/uploads/<?php $websiteName = getWebsiteDetails();
+                                                              echo $websiteName['logo']; ?>" alt="">
             </a>
         </div>
         <div class="navbar-links">

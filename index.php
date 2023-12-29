@@ -295,69 +295,45 @@
         <p style="text-align: center; margin-top: 1rem;">Lorem Ipsum is simply dummy text of the printing</p>
     </div>
     <div class="postCardContainer">
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
+        <?php
+        $statement = $pdo->prepare("SELECT 
+												
+												t1.id,
+												t1.name,
+												t1.slug,
+												t1.designation_id,
+												t1.photo,
+												t1.facebook,
+												t1.twitter,
+												t1.linkedin,
+												t1.youtube,
+												t1.google_plus,
+												t1.instagram,
+												t1.flickr,
+
+												t2.designation_id,
+												t2.designation_name
+
+					                           FROM tbl_team_member t1
+					                           JOIN tbl_designation t2
+					                           ON t1.designation_id = t2.designation_id
+					                           WHERE t1.status = ?
+					                           ");
+        $statement->execute(array('Active'));
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row) {
+        ?>
+            <div class="card team-card">
+                <img src="./assets/uploads/<?php echo $row['photo'] ?>" alt="<?php echo $row['photo'] ?>" style="width:100%">
+                <div class="container">
+                    <h4><b><?php echo $row['name'] ?></b></h4>
+                    <p><?php echo $row['designation_name'] ?></p>
+                </div>
             </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
-        <div class="card team-card">
-            <img src="img/faiza-bello.png" alt="Avatar" style="width:100%">
-            <div class="container">
-                <h4><b>Dr Najiya Min</b></h4>
-                <p>Understanding Digital Eye Strain: Tips for Optimal Eye Health in the Digital Age</p>
-            </div>
-        </div>
+        <?php
+        }
+        ?>
+        
     </div>
 </section>
 <section class="mentorship">
