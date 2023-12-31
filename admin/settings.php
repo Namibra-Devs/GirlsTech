@@ -174,46 +174,45 @@ if (isset($_POST['form_newsletter'])) {
 }
 
 
-// update about section
+// update about
 if (isset($_POST['form_home_about'])) {
     $valid = 1;
 
-    $path = $_FILES['home_about_img']['name'];
-    $path_tmp = $_FILES['home_about_img']['tmp_name'];
+    if ($valid == 1) {
 
-    if ($path != '') {
-        $ext = pathinfo($path, PATHINFO_EXTENSION);
-        $file_name = basename($path, '.' . $ext);
-        if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg' && $ext != 'gif') {
-            $valid = 0;
-            $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
-        }
+            // updating the database
+            $statement = $pdo->prepare("UPDATE tbl_settings SET home_about_title=?, home_about_content=? WHERE id=1");
+            $statement->execute(array($_POST['home_about_title'], $_POST['home_about_content']));
+
+            $success_message = 'About is updated successfully.';
+        
     }
+}
+// update mission
+if (isset($_POST['form_home_mission'])) {
+    $valid = 1;
 
     if ($valid == 1) {
 
-        if ($path != '') {
-            // removing the existing photo
-            $statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
-            $statement->execute();
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($result as $row) {
-                $home_about_img = $row['home_about_img'];
-                unlink('../assets/uploads/' . $home_about_img);
-            }
+            // updating the database
+            $statement = $pdo->prepare("UPDATE tbl_settings SET home_mission_title=?, home_mission_content=? WHERE id=1");
+            $statement->execute(array($_POST['home_mission_title'], $_POST['home_mission_content']));
 
-            // updating the data
-            $final_name = 'home_about_img' . '.' . $ext;
-            move_uploaded_file($path_tmp, '../assets/uploads/' . $final_name);
+            $success_message = 'Mission is updated successfully.';
+        
+    }
+}
+// update vision
+if (isset($_POST['form_home_vision'])) {
+    $valid = 1;
+
+    if ($valid == 1) {
 
             // updating the database
-            $statement = $pdo->prepare("UPDATE tbl_settings SET home_about_title=?, home_about_img=?, home_about_content=? WHERE id=1");
-            $statement->execute(array($_POST['home_about_title'], $final_name, $_POST['home_about_content']));
-        }else {
-            $statement = $pdo->prepare("UPDATE tbl_settings SET home_about_title=?, home_about_content=? WHERE id=1");
-            $statement->execute(array($_POST['home_about_title'], $_POST['home_about_content']));
-        }
-            $success_message = 'About Section is updated successfully.';
+            $statement = $pdo->prepare("UPDATE tbl_settings SET home_vision_title=?, home_vision_content=? WHERE id=1");
+            $statement->execute(array($_POST['home_vision_title'], $_POST['home_vision_content']));
+
+            $success_message = 'Vision is updated successfully.';
         
     }
 }
@@ -312,6 +311,10 @@ foreach ($result as $row) {
     $home_about_title            = $row['home_about_title'];
 	$home_about_img              = $row['home_about_img'];
 	$home_about_content          = $row['home_about_content'];
+    $home_mission_title          = $row['home_mission_title'];
+	$home_mission_content        = $row['home_mission_content'];
+    $home_vision_title           = $row['home_vision_title'];
+	$home_vision_content         = $row['home_vision_content'];
     $home_title_service          = $row['home_title_service'];
     $home_subtitle_service       = $row['home_subtitle_service'];
     $home_status_service         = $row['home_status_service'];
@@ -595,8 +598,8 @@ foreach ($result as $row) {
                             </div>
                         </form>
 
-                <!-- ABOUT SECTION -->
-                        <h3>About Section</h3>
+                <!-- ABOUT -->
+                        <h3>About</h3>
                         <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                             <div class="box box-info">
                                 <div class="box-body">
@@ -613,18 +616,6 @@ foreach ($result as $row) {
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">Existing Photo</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <img src="../assets/uploads/<?php echo $home_about_img; ?>" class="existing-photo" style="height:80px;">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="col-sm-2 control-label">New Photo</label>
-                                        <div class="col-sm-6" style="padding-top:6px;">
-                                            <input type="file" name="home_about_img">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-6">
                                             <button type="submit" class="btn btn-success pull-left" name="form_home_about">Update</button>
@@ -633,9 +624,61 @@ foreach ($result as $row) {
                                 </div>
                             </div>
                         </form>
+                <!-- MISSION -->
+                        <h3>Mission</h3>
+                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">Title </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="home_mission_title" class="form-control" value="<?php echo $home_mission_title; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">Content </label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control editor" name="home_mission_content"><?php echo $home_mission_content ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form_home_mision">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                <!-- VISION -->
+                        <h3>Vision</h3>
+                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">Title </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="home_vision_title" class="form-control" value="<?php echo $home_vision_title; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">Content </label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control editor" name="home_vision_content"><?php echo $home_vision_content ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form_home_vision">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
 
-                        <h3>Counter Section</h3>
+                        <!-- <h3>Counter Section</h3>
                         <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                             <div class="box box-info">
                                 <div class="box-body">
@@ -678,7 +721,7 @@ foreach ($result as $row) {
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
 
 
