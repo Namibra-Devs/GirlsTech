@@ -9,7 +9,7 @@ $success_message1 = '';
 
 
 // Check if the user is logged in or not
-if(!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
 	header('location: login.php');
 	exit;
 }
@@ -23,11 +23,12 @@ foreach ($res as $row) {
 }
 
 // Current Page Access Level check for all pages
-$cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+$cur_page = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,8 +49,8 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 	<link rel="stylesheet" href="css/on-off-switch.css">
 	<link rel="stylesheet" href="css/sb-admin.css">
 
-	<?php if($active_editor == 'Summernote'): ?>
-	<link rel="stylesheet" href="css/summernote.css">
+	<?php if ($active_editor == 'Summernote') : ?>
+		<link rel="stylesheet" href="css/summernote.css">
 	<?php endif; ?>
 
 	<link rel="stylesheet" href="css/style.css">
@@ -70,7 +71,7 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 			</a>
 
 			<nav class="navbar navbar-static-top">
-				
+
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
@@ -101,38 +102,46 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 			</nav>
 		</header>
 
-  		<?php $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1); ?>
+		<?php $cur_page = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1); ?>
 
-  		<aside class="main-sidebar">
-    		<section class="sidebar">
-      
-      			<ul class="sidebar-menu">
+		<aside class="main-sidebar">
+			<section class="sidebar">
 
-			        <li class="treeview <?php if($cur_page == 'index.php') {echo 'active';} ?>">
-			          <a href="index.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Dashboard</span>
-			          </a>
-			        </li>
+				<ul class="sidebar-menu">
 
-					
-
-			        <li class="treeview <?php if( ($cur_page == 'settings.php') ) {echo 'active';} ?>">
-			          <a href="settings.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Settings</span>
-			          </a>
-			        </li>
+					<li class="treeview <?php if ($cur_page == 'index.php') {
+											echo 'active';
+										} ?>">
+						<a href="index.php">
+							<i class="fa fa-hand-o-right"></i> <span>Dashboard</span>
+						</a>
+					</li>
 
 
 
+					<li class="treeview <?php if (($cur_page == 'settings.php')) {
+											echo 'active';
+										} ?>">
+						<a href="settings.php">
+							<i class="fa fa-hand-o-right"></i> <span>Settings</span>
+						</a>
+					</li>
 
-			        <li class="treeview <?php if( ($cur_page == 'language.php') ) {echo 'active';} ?>">
-			          <a href="language.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Language</span>
-			          </a>
-			        </li>
-			        
 
-					<li class="treeview <?php if( ($cur_page == 'category-add.php')||($cur_page == 'category.php')||($cur_page == 'category-edit.php') || ($cur_page == 'blog-add.php')||($cur_page == 'blog.php')||($cur_page == 'blog-edit.php') || ($cur_page == 'comment.php') ) {echo 'active';} ?>">
+
+
+					<li class="treeview <?php if (($cur_page == 'language.php')) {
+											echo 'active';
+										} ?>">
+						<a href="language.php">
+							<i class="fa fa-hand-o-right"></i> <span>Language</span>
+						</a>
+					</li>
+
+
+					<li class="treeview <?php if (($cur_page == 'category-add.php') || ($cur_page == 'category.php') || ($cur_page == 'category-edit.php') || ($cur_page == 'blog-add.php') || ($cur_page == 'blog.php') || ($cur_page == 'blog-edit.php') || ($cur_page == 'comment.php')) {
+											echo 'active';
+										} ?>">
 						<a href="#">
 							<i class="fa fa-hand-o-right"></i>
 							<span>Blog</span>
@@ -148,7 +157,9 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 					</li>
 
 					<!-- Events -->
-					<li class="treeview <?php if( ($cur_page == 'event-category-add.php')||($cur_page == 'event-category.php')||($cur_page == 'event-category-edit.php') || ($cur_page == 'event-add.php')||($cur_page == 'events.php')||($cur_page == 'event-edit.php') ) {echo 'active';} ?>">
+					<li class="treeview <?php if (($cur_page == 'event-category-add.php') || ($cur_page == 'event-category.php') || ($cur_page == 'event-category-edit.php') || ($cur_page == 'event-add.php') || ($cur_page == 'events.php') || ($cur_page == 'event-edit.php')) {
+											echo 'active';
+										} ?>">
 						<a href="#">
 							<i class="fa fa-hand-o-right"></i>
 							<span>Events</span>
@@ -163,7 +174,9 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 					</li>
 
 					<!-- Performers -->
-					<li class="treeview <?php if( ($cur_page == 'performer-category-add.php')||($cur_page == 'performer-category.php')||($cur_page == 'performer-category-edit.php') || ($cur_page == 'performer-add.php')||($cur_page == 'performer.php')||($cur_page == 'performer-edit.php') ) {echo 'active';} ?>">
+					<li class="treeview <?php if (($cur_page == 'performer-category-add.php') || ($cur_page == 'performer-category.php') || ($cur_page == 'performer-category-edit.php') || ($cur_page == 'performer-add.php') || ($cur_page == 'performer.php') || ($cur_page == 'performer-edit.php')) {
+											echo 'active';
+										} ?>">
 						<a href="#">
 							<i class="fa fa-hand-o-right"></i>
 							<span>Perfomers</span>
@@ -177,9 +190,11 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 						</ul>
 					</li>
 
-										
 
-					<li class="treeview <?php if( ($cur_page == 'designation-add.php')||($cur_page == 'designation.php')||($cur_page == 'designation-edit.php') || ($cur_page == 'team-member-add.php')||($cur_page == 'team-member.php')||($cur_page == 'team-member-edit.php') ) {echo 'active';} ?>">
+
+					<li class="treeview <?php if (($cur_page == 'designation-add.php') || ($cur_page == 'designation.php') || ($cur_page == 'designation-edit.php') || ($cur_page == 'team-member-add.php') || ($cur_page == 'team-member.php') || ($cur_page == 'team-member-edit.php')) {
+											echo 'active';
+										} ?>">
 						<a href="#">
 							<i class="fa fa-hand-o-right"></i>
 							<span>Team Member</span>
@@ -194,9 +209,11 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 					</li>
 
 
-					
 
-			        <li class="treeview <?php if( ($cur_page == 'photo-category-add.php')||($cur_page == 'photo-category.php')||($cur_page == 'photo-category-edit.php') || ($cur_page == 'photo-add.php')||($cur_page == 'photo.php')||($cur_page == 'photo-edit.php') || ($cur_page == 'video-category-add.php')||($cur_page == 'video-category.php')||($cur_page == 'video-category-edit.php') || ($cur_page == 'video-add.php')||($cur_page == 'video.php')||($cur_page == 'video-edit.php') ) {echo 'active';} ?>">
+
+					<li class="treeview <?php if (($cur_page == 'photo-category-add.php') || ($cur_page == 'photo-category.php') || ($cur_page == 'photo-category-edit.php') || ($cur_page == 'photo-add.php') || ($cur_page == 'photo.php') || ($cur_page == 'photo-edit.php') || ($cur_page == 'video-category-add.php') || ($cur_page == 'video-category.php') || ($cur_page == 'video-category-edit.php') || ($cur_page == 'video-add.php') || ($cur_page == 'video.php') || ($cur_page == 'video-edit.php')) {
+											echo 'active';
+										} ?>">
 						<a href="#">
 							<i class="fa fa-hand-o-right"></i>
 							<span>Photos</span>
@@ -210,27 +227,41 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 						</ul>
 					</li>
 
-					
-					
-
-
-					<li class="treeview <?php if( ($cur_page == 'file-add.php')||($cur_page == 'file.php')||($cur_page == 'file-edit.php') ) {echo 'active';} ?>">
-			          <a href="file.php">
-			            <i class="fa fa-hand-o-right"></i> <span>File Upload (Media)</span>
-			          </a>
-			        </li>
-
-
-					
-			        <li class="treeview <?php if( ($cur_page == 'social-media.php') ) {echo 'active';} ?>">
-			          <a href="social-media.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Social Media</span>
-			          </a>
-			        </li>
 
 
 
-			        <li class="treeview <?php if( ($cur_page == 'subscriber.php')||($cur_page == 'subscriber-email.php') ) {echo 'active';} ?>">
+
+					<li class="treeview <?php if (($cur_page == 'file-add.php') || ($cur_page == 'file.php') || ($cur_page == 'file-edit.php')) {
+											echo 'active';
+										} ?>">
+						<a href="file.php">
+							<i class="fa fa-hand-o-right"></i> <span>File Upload (Media)</span>
+						</a>
+					</li>
+
+
+
+					<li class="treeview <?php if (($cur_page == 'social-media.php')) {
+											echo 'active';
+										} ?>">
+						<a href="social-media.php">
+							<i class="fa fa-hand-o-right"></i> <span>Social Media</span>
+						</a>
+					</li>
+
+
+					<li class="treeview"> <?php if (($cur_page == 'contact_messages.php') || ($cur_page == 'contact_messages.php')) {
+												echo 'active';
+											} ?>">
+						<a href="contact_messages.php">
+							<i class="fa fa-hand-o-right"></i>
+							<span>Messages</span></a>
+					</li>
+
+
+					<li class="treeview <?php if (($cur_page == 'subscriber.php') || ($cur_page == 'subscriber-email.php')) {
+											echo 'active';
+										} ?>">
 						<a href="#">
 							<i class="fa fa-hand-o-right"></i>
 							<span>Subscriber</span>
@@ -244,9 +275,10 @@ $cur_page = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+
 						</ul>
 					</li>
 
-        
-      			</ul>
-    		</section>
-  		</aside>
 
-  		<div class="content-wrapper">
+
+				</ul>
+			</section>
+		</aside>
+
+		<div class="content-wrapper">
