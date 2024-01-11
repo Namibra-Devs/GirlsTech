@@ -1,5 +1,55 @@
 <?php include('./include/header.php') ?>
 
+<?php
+include('./admin/database/config.php');
+
+
+$error_message1 = '';
+$success_message1 = '';
+
+if (isset($_POST['form_subscribe'])) {
+
+
+    $send_email_from  = 'abdulgafurshaattir@gmail.com';
+    $receive_email_to = 'abdulgafurshaattir@gmail.com';
+    $smtp_host        = 'smtp.gmail.com';
+    $smtp_port        = '587';
+    $smtp_username    = 'jobid@ubids.edu.gh';
+    $smtp_password    = 'b7ye6z9h1';
+
+
+    if (empty($_POST['email_subscribe'])) {
+        $valid = 0;
+        $error_message1 .= 'Email Field is empty';
+    } else {
+        if (filter_var($_POST['email_subscribe'], FILTER_VALIDATE_EMAIL) === false) {
+            $valid = 0;
+            $error_message1 .= 'Invalid email';
+        } else {
+            // Getting current date
+            $current_date = date('Y-m-d');
+
+            // Getting current date and time
+            $current_date_time = date('Y-m-d H:i:s');
+
+            // Inserting data into the database
+            $statement = $pdo->prepare("INSERT INTO tbl_subscriber (subs_email,subs_date,subs_date_time,subs_hash,subs_active) VALUES (?,?,?,?,?)");
+            $statement->execute(array($_POST['email_subscribe'], $current_date, $current_date_time, '', 1));
+
+            $success_message1 = 'Thnak you for subscribing';
+        }
+    }
+}
+
+if ($error_message1 != '') {
+    echo "<script>alert('" . $error_message1 . "')</script>";
+}
+if ($success_message1 != '') {
+    echo "<script>alert('" . $success_message1 . "')</script>";
+}
+
+?>
+
 <section class="contact">
     <div class="title" style="margin-bottom: 2rem;">
         <h1>Contact Us</h1>
@@ -28,10 +78,12 @@
             <h1>Sign up to our newsletter</h1>
             <p>Lorem Ipsum is simply dummy</p>
         </div>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Enter Your Email">
-            <button class="search-button">Subscribe</button>
-        </div>
+        <form class="search-container" action="" method="post" class="subscription-form">
+     
+            <input type="text" placeholder="Enter your Email" name="email_subscribe" class="search-input">
+                        <input type="submit" value="Subscribe" name="form_subscribe" class="search-button">
+
+        </form>
     </div>
 </section>
 
