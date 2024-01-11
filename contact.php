@@ -7,6 +7,23 @@ include('./admin/database/config.php');
 $error_message1 = '';
 $success_message1 = '';
 
+// Contact form 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    // Insert data into the database
+    $statement = $pdo->prepare("INSERT INTO tbl_messages (name, email, message) VALUES (?,?,?)");
+            $statement->execute(array($name, $email, $message));
+
+            $contact_success_message = 'Message submitted successfully';
+}
+if ($contact_success_message != '') {
+    echo "<script>alert('" . $contact_success_message . "')</script>";
+}
+
 if (isset($_POST['form_subscribe'])) {
 
 
@@ -60,15 +77,18 @@ if ($success_message1 != '') {
         </div>
         <div class="form"> 
             
-            <form action="">
-                <label for="">Name</label>
-                <input type="text" name="" id="">
-                <label for="">Email</label>
-                <input type="email" name="" id="">
-                 <label for="">Message</label>
-                 <textarea name="" id="" cols="30" rows="10"></textarea>
-                 <button type="submit">Submit</button>
-            </form>
+        <form id="myForm" action="" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" cols="30" rows="10" required></textarea>
+
+    <button type="button" onclick="validateForm()">Submit</button>
+</form>
         </div>
     </div>
 </section>
@@ -86,5 +106,21 @@ if ($success_message1 != '') {
         </form>
     </div>
 </section>
+
+<!-- Contact validation -->
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+
+        if (name === '' || email === '' || message === '') {
+            alert('Please fill out all fields.');
+        } else {
+            // If all fields are filled, submit the form
+            document.getElementById('myForm').submit();
+        }
+    }
+</script>
 
 <?php include('./include/footer.php') ?>
