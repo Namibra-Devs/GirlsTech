@@ -170,59 +170,72 @@ $footerInfo = getWebsiteDetails();
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const openPopupBtn = document.getElementById('openPopupBtn');
-        const closePopupBtn = document.getElementById('closePopupBtn');
-        const donationPopup = document.getElementById('donationPopup');
         const backgroundBlur = document.getElementById('backgroundBlur');
-        const submitDonationBtn = document.getElementById('submitDonation');
 
-        openPopupBtn.addEventListener('click', function() {
-          donationPopup.style.display = 'block';
-          backgroundBlur.style.display = 'block';
+        openPopupBtn.addEventListener('click', function () {
+            backgroundBlur.style.display = 'block';
+
+            // Fetch Paystack API key from the server using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const paystackApiKey = xhr.responseText.trim();
+
+                    // Continue with your existing code
+                    const closePopupBtn = document.getElementById('closePopupBtn');
+                    const donationPopup = document.getElementById('donationPopup');
+                    const submitDonationBtn = document.getElementById('submitDonation');
+
+                    donationPopup.style.display = 'block';
+
+                    closePopupBtn.addEventListener('click', function () {
+                        donationPopup.style.display = 'none';
+                        backgroundBlur.style.display = 'none';
+                    });
+
+                    window.addEventListener('click', function (event) {
+                        if (event.target === donationPopup) {
+                            donationPopup.style.display = 'none';
+                            backgroundBlur.style.display = 'none';
+                        }
+                    });
+
+                    submitDonationBtn.addEventListener('click', function () {
+                        const fullName = document.getElementById('fullName').value;
+                        const emailAddress = document.getElementById('emailAddress').value;
+                        const donationAmount = document.getElementById('donationAmount').value;
+
+                        // Set up Paystack configuration
+                        const paystackConfig = {
+                            key: paystackApiKey,
+                            email: emailAddress,
+                            amount: donationAmount * 100,
+                            currency: 'GHS',
+                            ref: `donation_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+                            callback: function (response) {
+                                alert(`Thank you, ${fullName} (${emailAddress}), for your donation of $${donationAmount}!`);
+                                donationPopup.style.display = 'none';
+                                backgroundBlur.style.display = 'none';
+                            },
+                            onClose: function () {
+                                donationPopup.style.display = 'none';
+                                backgroundBlur.style.display = 'none';
+                            },
+                        };
+
+                        const handler = PaystackPop.setup(paystackConfig);
+                        handler.openIframe();
+                    });
+                }
+            };
+
+            xhr.open('GET', 'get_api_key.php', true);
+            xhr.send();
         });
-
-        closePopupBtn.addEventListener('click', function() {
-          donationPopup.style.display = 'none';
-          backgroundBlur.style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-          if (event.target === donationPopup) {
-            donationPopup.style.display = 'none';
-            backgroundBlur.style.display = 'none';
-          }
-        });
-
-        submitDonationBtn.addEventListener('click', function() {
-          const fullName = document.getElementById('fullName').value;
-          const emailAddress = document.getElementById('emailAddress').value;
-          const donationAmount = document.getElementById('donationAmount').value;
-
-          // Set up Paystack configuration
-          const paystackConfig = {
-            key: 'pk_test_c9f464005defec9a9cf86e9b6e6f8d7ed90ed5f9',
-            email: emailAddress,
-            amount: donationAmount * 100,
-            currency: 'GHS',
-            ref: `donation_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
-            callback: function(response) {
-              alert(`Thank you, ${fullName} (${emailAddress}), for your donation of $${donationAmount}!`);
-              donationPopup.style.display = 'none';
-              backgroundBlur.style.display = 'none';
-            },
-            onClose: function() {
-              donationPopup.style.display = 'none';
-              backgroundBlur.style.display = 'none';
-            },
-          };
-
-          const handler = PaystackPop.setup(paystackConfig);
-          handler.openIframe();
-        });
-      });
-    </script>
-
+    });
+</script>
     <section class="footer">
       <div class="teletech">
         <div>

@@ -346,6 +346,13 @@ foreach ($result as $row) {
     $smtp_username    = $row['smtp_username'];
     $smtp_password    = $row['smtp_password'];
 }
+
+$statement = $pdo->prepare("SELECT * FROM tbl_payment WHERE id=1");
+$statement->execute();
+$result = $statement->fetchAll();
+foreach ($result as $row) {
+    $api_key = $row['api_key'];
+}
 ?>
 
 
@@ -382,6 +389,7 @@ foreach ($result as $row) {
                     <li><a href="#tab_2" data-toggle="tab">Favicon</a></li>
                     <li><a href="#tab_3" data-toggle="tab">General Content</a></li>
                     <li><a href="#tab_4" data-toggle="tab">Email Settings</a></li>
+                    <li><a href="#tab_5" data-toggle="tab">Payment Settings</a></li>
                     <li><a href="#tab_6" data-toggle="tab">Home Page</a></li>
                     <li><a href="#tab_8" data-toggle="tab">Other</a></li>
                 </ul>
@@ -546,6 +554,32 @@ foreach ($result as $row) {
                                         <label for="" class="col-sm-2 control-label">SMTP Password</label>
                                         <div class="col-sm-5">
                                             <input class="form-control" type="text" name="smtp_password" value="<?php echo $smtp_password; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-success pull-left" name="form_email">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+
+                    <div class="tab-pane" id="tab_5">
+
+                        <form class="form-horizontal" action="" method="post">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">Paystack API key</label>
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" name="api_key" value="<?php echo $api_key; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
