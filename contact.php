@@ -10,12 +10,12 @@ $success_message1 = '';
 if (isset($_POST['form_subscribe'])) {
 
 
-    $send_email_from  = 'abdulgafurshaattir@gmail.com';
-    $receive_email_to = 'abdulgafurshaattir@gmail.com';
-    $smtp_host        = 'smtp.gmail.com';
-    $smtp_port        = '587';
-    $smtp_username    = 'jobid@ubids.edu.gh';
-    $smtp_password    = 'b7ye6z9h1';
+    $send_email_from  = $row['send_email_from'];
+        $receive_email_to = $row['receive_email_to'];
+        $smtp_host        = $row['smtp_host'];
+        $smtp_port        = $row['smtp_port'];
+        $smtp_username    = $row['smtp_username'];
+        $smtp_password    = $row['smtp_password'];
 
 
     if (empty($_POST['email_subscribe'])) {
