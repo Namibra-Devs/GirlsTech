@@ -84,4 +84,4 @@
 </section>
 
 
-<?php include('./includes/footer.php'); ?>
+<?php include('./include/footer.php'); ?>

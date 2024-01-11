@@ -2,59 +2,50 @@
 
 <?php
 // After form submit checking everything for email sending
-if(isset($_POST['form1']))
-{   
-    $statement = $pdo->prepare("SELECT * FROM tbl_setting_email WHERE id=1");
-    $statement->execute();
-    $result = $statement->fetchAll();                           
-    foreach ($result as $row) {
-        $send_email_from  = $row['send_email_from'];
-        $receive_email_to = $row['receive_email_to'];
-        $smtp_host        = $row['smtp_host'];
-        $smtp_port        = $row['smtp_port'];
-        $smtp_username    = $row['smtp_username'];
-        $smtp_password    = $row['smtp_password'];
-    }
+if (isset($_POST['form1'])) {
+
+    $send_email_from  = 'abdulgafurshaattir@gmail.com';
+    $receive_email_to = 'abdulgafurshaattir@gmail.com';
+    $smtp_host        = 'smtp.gmail.com';
+    $smtp_port        = '587';
+    $smtp_username    = 'jobid@ubids.edu.gh';
+    $smtp_password    = 'b7ye6z9h1';
 
     $valid = 1;
 
-    if(empty($_POST['subject']))
-    {
+    if (empty($_POST['subject'])) {
         $valid = 0;
         $error_message .= 'Subject can not be empty<br>';
     }
 
-    if(empty($_POST['message']))
-    {
+    if (empty($_POST['message'])) {
         $valid = 0;
         $error_message .= 'Message can not be empty<br>';
     }
 
-    if($valid == 1)
-    {
+    if ($valid == 1) {
         require_once '../vendor/autoload.php';
 
-		$transport = (new Swift_SmtpTransport($smtp_host, $smtp_port))
-		->setUsername($smtp_username)
-		->setPassword($smtp_password);
-		
+        $transport = (new Swift_SmtpTransport($smtp_host, $smtp_port, 'tls'))
+            ->setUsername($smtp_username)
+            ->setPassword($smtp_password);
+
         $statement = $pdo->prepare("SELECT * FROM tbl_subscriber WHERE subs_active=1");
         $statement->execute();
         $result = $statement->fetchAll();
-        foreach ($result as $row)
-        {
+        foreach ($result as $row) {
             $mailer = new Swift_Mailer($transport);
             $message = (new Swift_Message($_POST['subject']))
                 ->setFrom([$send_email_from])
                 ->setTo([$row['subs_email']])
                 ->setReplyTo([$receive_email_to])
-                ->setBody($_POST['message'],'text/html');
+                ->setBody($_POST['message'], 'text/html');
 
-		    $mailer->send($message);
+            $mailer->send($message);
         }
-        
-        $success_message = 'Email is sent successfully to all subscribers.';
 
+        $success_message = 'Email is sent successfully to all subscribers.';
+        
     }
 }
 ?>

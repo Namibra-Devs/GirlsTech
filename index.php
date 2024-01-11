@@ -69,9 +69,9 @@
             </div>
             <div class="service-img">
                 <img src="img/about-pic-1.png" alt="jag">
-                <img src="img/about-pic-2.png" alt="jag">
+                <!-- <img src="img/about-pic-2.png" alt="jag">
                 <img src="img/about-pic-3.png" alt="jag">
-                <img src="img/about-pic-4.png" alt="jag">
+                <img src="img/about-pic-4.png" alt="jag"> -->
             </div>
         </div>
     </div>
@@ -82,16 +82,31 @@
         <h1>Programs and Initiatives</h1>
         <p style="text-align: center; margin-top: 1rem;">Lorem Ipsum is simply dummy text of the printing</p>
     </div>
-    <div class="expertise-container">
-        <div class="expertise-box">
-            <img src="img/program-pic-1.png" alt="">
+    <div class="services_container">
+       <div class="service-box">
+        <div class="service-text" style="background-color: transparent;">
+            <h2>Tech Workshops and Bootcamps</h2>
+            <p>Our mentorship program pairs experienced professionals with aspiring women in tech, 
+                facilitating knowledge transfer and professional growth.</p>
         </div>
-        <div class="expertise-box">
-            <img src="img/program-pic-2.png" alt="">
+        <div class="service-text" style="background-color: transparent;">
+            <h2>Mentor-Match Program</h2>
+            <p>GirlyTech organises workshops and bootcamps focused on coding, 
+                cybersecurity, data science, and other in-demand tech skills.</p>
         </div>
-        <div class="expertise-box">
-            <img src="img/program-pic-3.png" alt="">
+       </div>
+       <div class="service-box">
+        <div class="service-text" style="background-color: transparent;">
+            <h2>Industry Partnerships</h2>
+            <p>Our mentorship program pairs experienced professionals with aspiring women in tech, 
+                facilitating knowledge transfer and professional growth.</p>
         </div>
+        <div class="service-text" style="background-color: transparent;">
+            <h2>Industry Partnerships</h2>
+            <p>GirlyTech organises workshops and bootcamps focused on coding, 
+                cybersecurity, data science, and other in-demand tech skill.</p>
+        </div>
+       </div>
     </div>
 </section>
 <section class="testimonials">
