@@ -6,7 +6,6 @@
 	</div>
 	<div class="content-header-right">
 		<a href="subscriber-remove.php" class="btn btn-primary btn-sm">Remove Pending Subscribers</a>
-		<a href="subscriber-csv.php" class="btn btn-primary btn-sm">Export as CSV</a>
         <a href="subscriber-email.php" class="btn btn-primary btn-sm">Send Email To Subscribers</a>
 	</div>
 </section>
