@@ -1,3 +1,5 @@
+<?php error_reporting(0) ?>
+
 <?php include('./include/header.php') ?>
 
 <?php
@@ -6,9 +8,10 @@ include('./admin/database/config.php');
 
 $error_message1 = '';
 $success_message1 = '';
+$contact_success_message = '';
 
 // Contact form 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['email'])) {
     // Collect form data
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -27,12 +30,12 @@ if ($contact_success_message != '') {
 if (isset($_POST['form_subscribe'])) {
 
 
-    $send_email_from  = $row['send_email_from'];
-        $receive_email_to = $row['receive_email_to'];
-        $smtp_host        = $row['smtp_host'];
-        $smtp_port        = $row['smtp_port'];
-        $smtp_username    = $row['smtp_username'];
-        $smtp_password    = $row['smtp_password'];
+    // $send_email_from  = $row['send_email_from'];
+    //     $receive_email_to = $row['receive_email_to'];
+    //     $smtp_host        = $row['smtp_host'];
+    //     $smtp_port        = $row['smtp_port'];
+    //     $smtp_username    = $row['smtp_username'];
+    //     $smtp_password    = $row['smtp_password'];
 
 
     if (empty($_POST['email_subscribe'])) {

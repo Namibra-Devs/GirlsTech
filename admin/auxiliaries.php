@@ -79,7 +79,7 @@ function getUpcomingEvents()
           <p><b>About Events:</b></p>
           <p>'.$event_content_short.'</p>
           <div class="mentor-btn" style="margin-top: 1.2rem;">
-              <a href="'.$event_link.'" style="  padding: .8rem 1.0rem; background-color: #102BDC; color: aliceblue;">Become a mentor</a>
+              <a href="single_event.php?id=' . $event_id . '" style="  padding: .8rem 1.0rem; background-color: #102BDC; color: aliceblue;">Become a mentor</a>
           </div>
       </div>
       <div class="service-img perk-box">
@@ -116,7 +116,7 @@ function getPastEvents()
         <p><b>About Events:</b></p>
         <p>'.$event_content_short.'</p>
         <div class="mentor-btn" style="margin-top: 1.2rem;">
-            <a href="'.$event_link.'" style="  padding: .8rem 1.0rem; background-color: #102BDC; color: aliceblue;">Become a mentor</a>
+        <a href="single_event.php?id=' . $event_id . '" style="  padding: .8rem 1.0rem; background-color: #102BDC; color: aliceblue;">Register</a>
         </div>
     </div>
     <div class="service-img perk-box">

@@ -18,12 +18,11 @@
     </div>
     <div class="quick-links">
         <h3>Quick Links</h3>
-        <a href="home.html">About us</a>
-        <a href="aboutUs.html">Events</a>
-        <a href="services.html">Programs</a>
-        <a href="portfolio.html">Get Involve</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="index.php">About us</a>
+        <a href="event.php">Events</a>
+        <a href="program.php">Programs</a>
+        <a href="blog.php">Blog</a>
+        <a href="contact.php">Contact Us</a>
     </div>
     <div class="get-intouch">
         <div class="social-links">

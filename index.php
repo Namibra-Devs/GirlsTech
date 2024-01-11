@@ -55,7 +55,7 @@ if ($success_message1 != '') {
     <div class="home_banner_text">
         <h1>GirlyTech: Bridging Tech's Gender Gap, Empowering Women, Fostering Inclusion</h1>
         <p>Unlock Your Potential and Thrive in the Dynamic World of Technology</p>
-        <a href="contact.html">Join Our Community </a>
+        <a href="contact.php">Join Our Community </a>
     </div>
     <div class="team-members">
         <div class="team-member">
